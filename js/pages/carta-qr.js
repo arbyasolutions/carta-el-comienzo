@@ -214,7 +214,7 @@
     },
     { id: "entrantes", photo: "nachos-pulled" },
     { id: "carnes", photo: "chuleton" },
-    { id: "menu", detail: "16,90 € · lunes a viernes", poster: "#e459c7" },
+    { id: "menu", detail: "16,90 € · L a V", photo: "local-mesas-donut" },
     { id: "arroces", photo: "arroz-chuleton", detail: "Por encargo" },
     { id: "postres", photo: "torrija" },
     { id: "tartas", photo: "tarta-el-comienzo", detail: "Por encargo" },
