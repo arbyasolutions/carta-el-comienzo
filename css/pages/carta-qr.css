@@ -1,0 +1,1457 @@
+:root {
+  color-scheme: dark;
+  --altura-nav-carta: 64px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: #000;
+}
+
+body {
+  min-width: 320px;
+  margin: 0;
+  overflow-x: hidden;
+  background: #000;
+  color: #fff;
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.45;
+}
+
+body.carta-modal-abierta {
+  overflow: hidden;
+}
+
+button,
+a {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 4px solid var(--turquesa);
+  outline-offset: 4px;
+}
+
+.carta-seccion h2 {
+  margin: 0;
+  font-family: var(--display);
+  font-weight: 400;
+}
+
+.carta-nav {
+  position: sticky;
+  z-index: 20;
+  top: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(0, 0, 0, 0.94);
+  backdrop-filter: blur(14px);
+}
+
+.carta-estructura {
+  width: 100%;
+}
+
+.carta-nav__scroll {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  overflow-x: auto;
+  padding: 9px max(16px, env(safe-area-inset-left)) 10px;
+  scrollbar-width: none;
+}
+
+.carta-nav__scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.carta-nav a {
+  display: inline-flex;
+  min-height: 44px;
+  flex: 0 0 auto;
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.carta-nav a.is-active {
+  border-color: var(--rosa);
+  background: var(--rosa);
+  color: #000;
+}
+
+.carta-contenido {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.carta-seccion {
+  position: relative;
+  scroll-margin-top: calc(var(--altura-nav-carta) + 10px);
+  padding: 70px 18px 34px;
+  overflow: clip;
+}
+
+.carta-seccion:nth-child(even) {
+  background: #121212;
+}
+
+.carta-seccion__cabecera {
+  display: grid;
+  align-items: end;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.carta-seccion h2 {
+  max-width: 700px;
+  color: var(--acento);
+  font-size: clamp(28px, 8vw, 50px);
+  line-height: 1;
+  letter-spacing: -0.06em;
+  text-shadow: 3px 3px 0 #000;
+}
+
+.carta-seccion__intro,
+.carta-grupo__intro {
+  max-width: 620px;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 650;
+}
+
+.carta-goteo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 52px;
+  pointer-events: none;
+}
+
+.carta-goteo::before {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 16px;
+  background: var(--acento);
+  content: "";
+}
+
+.carta-goteo svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 124px;
+  transform: scaleY(0.4);
+  transform-origin: top;
+}
+
+.carta-goteo path {
+  fill: var(--acento);
+}
+
+.carta-burger__tag {
+  color: var(--amarillo);
+  font-size: 14px;
+  font-weight: 850;
+}
+
+.carta-pegatina {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  min-height: 25px;
+  border: 2px solid #000;
+  border-radius: 4px;
+  padding: 4px 7px;
+  background: var(--amarillo);
+  color: #000;
+  font-size: 11px;
+  font-weight: 950;
+  line-height: 1.12;
+  text-align: center;
+  transform: rotate(-3deg);
+}
+
+.carta-pegatina--premio {
+  background: var(--turquesa);
+}
+
+.carta-pegatina--new {
+  position: absolute;
+  z-index: 2;
+  top: 12px;
+  right: 12px;
+  min-width: 49px;
+  min-height: 33px;
+  background: var(--rosa);
+  box-shadow:
+    0 0 8px #fff,
+    0 0 18px var(--rosa),
+    0 0 34px var(--rosa);
+  font-family: var(--display);
+  font-size: 13px;
+  animation: carta-resplandor 2.6s ease-in-out infinite;
+}
+
+.carta-pegatina--new::after {
+  position: absolute;
+  top: -5px;
+  left: -35%;
+  width: 22%;
+  height: calc(100% + 10px);
+  background: rgba(255, 255, 255, 0.82);
+  content: "";
+  transform: skewX(-20deg);
+  animation: carta-destello 4.6s ease-in-out infinite;
+}
+
+.carta-pegatina--new-grande {
+  top: 20px;
+  right: 20px;
+  min-width: 72px;
+  min-height: 46px;
+  font-size: 18px;
+}
+
+.carta-burgers {
+  display: grid;
+  gap: 22px;
+}
+
+.carta-burger {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto auto;
+  min-width: 0;
+  overflow: hidden;
+  border: 3px solid #fff;
+  border-radius: 12px;
+  padding: 0;
+  background: #050505;
+  color: #fff;
+  text-align: left;
+}
+
+button.carta-burger:hover,
+button.carta-burger:focus-visible,
+.carta-inicio__tarjeta:hover,
+.carta-inicio__tarjeta:focus-visible {
+  border-color: var(--turquesa);
+}
+
+.carta-inicio__grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.carta-inicio__tarjeta {
+  position: relative;
+  display: grid;
+  grid-column: span 3;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border: 3px solid var(--acento);
+  border-radius: 12px;
+  padding: 0;
+  background: #000;
+  color: #fff;
+  text-align: left;
+}
+
+.carta-inicio__tarjeta[data-seccion="burgers"] {
+  grid-column: 1 / -1;
+  aspect-ratio: 16 / 9;
+}
+
+.carta-inicio__tarjeta[data-seccion="desayunos"],
+.carta-inicio__tarjeta[data-seccion="bebidas"],
+.carta-inicio__tarjeta[data-seccion="vinoteca"] {
+  grid-column: span 2;
+  aspect-ratio: 1;
+}
+
+.carta-inicio__tarjeta[data-seccion="desayunos"] .carta-inicio__texto,
+.carta-inicio__tarjeta[data-seccion="bebidas"] .carta-inicio__texto,
+.carta-inicio__tarjeta[data-seccion="vinoteca"] .carta-inicio__texto {
+  padding: 28px 9px 9px;
+}
+
+.carta-inicio__tarjeta[data-seccion="desayunos"] .carta-inicio__texto b,
+.carta-inicio__tarjeta[data-seccion="bebidas"] .carta-inicio__texto b,
+.carta-inicio__tarjeta[data-seccion="vinoteca"] .carta-inicio__texto b {
+  font-size: clamp(13px, 3.4vw, 18px);
+}
+
+.carta-inicio__tarjeta[data-seccion="desayunos"] .carta-inicio__texto small,
+.carta-inicio__tarjeta[data-seccion="bebidas"] .carta-inicio__texto small,
+.carta-inicio__tarjeta[data-seccion="vinoteca"] .carta-inicio__texto small {
+  display: none;
+}
+
+.carta-inicio__imagen,
+.carta-inicio__poster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.carta-inicio__poster {
+  overflow: hidden;
+  background: var(--poster);
+}
+
+.carta-inicio__poster::before {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 18% 24%, var(--turquesa) 0 3px, transparent 4px),
+    radial-gradient(circle at 78% 20%, var(--rosa) 0 4px, transparent 5px),
+    repeating-linear-gradient(
+      125deg,
+      transparent 0 18px,
+      rgba(0, 0, 0, 0.26) 19px 25px
+    );
+  content: "";
+}
+
+.carta-inicio__tarjeta--cerveza .carta-inicio__imagen {
+  object-fit: contain;
+  background: #000;
+}
+
+.carta-inicio__texto {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: grid;
+  gap: 3px;
+  padding: 34px 11px 10px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.95) 64%);
+}
+
+.carta-inicio__texto b {
+  font-family: var(--display);
+  font-size: clamp(18px, 4.8vw, 26px);
+  font-weight: 400;
+  line-height: 1.05;
+}
+
+.carta-inicio__texto small {
+  color: var(--amarillo);
+  font-size: 12px;
+  font-weight: 850;
+}
+
+.carta-inicio__tarjeta > .carta-pegatina--new {
+  top: 12px;
+  right: 12px;
+}
+
+.carta-burger__visual {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.carta-burger__imagen,
+.carta-burger__poster {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.carta-burger__poster {
+  display: grid;
+  place-items: end start;
+  padding: 16px 48% 16px 16px;
+  background: var(--poster);
+  color: #000;
+}
+
+.carta-burger > .carta-pegatina--new {
+  top: 14px;
+  right: 14px;
+}
+
+.carta-pegatina--new--with-medals {
+  right: auto;
+  left: 14px;
+}
+
+.carta-medallas {
+  position: absolute;
+  z-index: 4;
+  top: 7px;
+  right: 7px;
+  width: 112px;
+  height: 108px;
+}
+
+.carta-medalla {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: grid;
+  width: 112px;
+  justify-items: center;
+  filter: drop-shadow(2px 4px 2px rgba(0, 0, 0, 0.65));
+  transform: rotate(5deg);
+}
+
+.carta-medalla svg {
+  width: 64px;
+  height: 76px;
+}
+
+.carta-medalla b {
+  display: -webkit-box;
+  width: 100%;
+  margin-top: -22px;
+  border: 2px solid #000;
+  border-radius: 3px;
+  padding: 4px 5px;
+  background: var(--rosa);
+  color: #000;
+  font-size: 11px;
+  font-weight: 950;
+  line-height: 1.05;
+  text-align: center;
+  text-transform: uppercase;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
+.carta-medalla:nth-child(2) {
+  top: 22px;
+  right: 48px;
+  transform: rotate(-8deg) scale(0.72);
+  transform-origin: top right;
+}
+
+.carta-medallas--dobles {
+  width: 224px;
+  height: 126px;
+}
+
+.carta-medallas--dobles .carta-medalla:nth-child(2) {
+  top: 18px;
+  right: 118px;
+  transform: rotate(-5deg) scale(0.9);
+  transform-origin: top right;
+}
+
+.carta-medallas--compactas {
+  width: 40px;
+  height: 40px;
+}
+
+.carta-medallas--compactas .carta-medalla {
+  width: 52px;
+  height: 52px;
+}
+
+.carta-medallas--compactas .carta-medalla svg {
+  width: 52px;
+  height: 52px;
+}
+
+.carta-medallas--compactas .carta-medalla:nth-child(2) {
+  top: 12px;
+  right: 14px;
+  transform: rotate(-8deg) scale(0.58);
+}
+
+.carta-burger__poster span {
+  padding: 10px;
+  font-family: var(--display);
+  font-size: 24px;
+  line-height: 1.06;
+  text-align: center;
+  transform: rotate(-8deg);
+}
+
+.carta-burger__cuerpo {
+  display: grid;
+  gap: 7px;
+  min-width: 0;
+  padding: 14px 12px 12px;
+}
+
+.carta-burger__cuerpo h3 {
+  margin: 0;
+  font-family: var(--display);
+  font-size: 19px;
+  font-weight: 400;
+  line-height: 1.05;
+}
+
+.carta-burger__cuerpo p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.24;
+}
+
+.carta-burger__pie {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px;
+  margin-top: auto;
+}
+
+.carta-precio {
+  display: inline-flex;
+  width: fit-content;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  min-height: 32px;
+  border: 2px solid #000;
+  border-radius: 4px;
+  padding: 5px 8px;
+  background: var(--amarillo);
+  color: #000;
+  font-size: 16px;
+  font-weight: 950;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.carta-lista-principal,
+.carta-lista {
+  display: grid;
+  gap: 0;
+}
+
+.carta-lista-principal {
+  align-items: start;
+}
+
+.carta-grupo + .carta-grupo {
+  margin-top: 24px;
+}
+
+.carta-lista-principal > .carta-grupo {
+  margin-top: 26px;
+}
+
+.carta-lista-principal > .carta-grupo:first-child {
+  margin-top: 0;
+}
+
+.carta-grupo h3 {
+  margin: 0 0 6px;
+  color: var(--acento);
+  font-family: var(--display);
+  font-size: 23px;
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+.carta-grupo__intro {
+  margin-bottom: 12px;
+}
+
+.carta-fila {
+  display: flex;
+  min-width: 0;
+  min-height: 50px;
+  align-items: center;
+  gap: 12px;
+  border: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 9px 0;
+  background: transparent;
+  color: #fff;
+  text-align: left;
+}
+
+.carta-fila--con-foto {
+  align-items: flex-start;
+}
+
+button.carta-fila:hover b,
+button.carta-fila:focus-visible b {
+  color: var(--acento);
+}
+
+.carta-fila__visual {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  flex: 0 0 96px;
+}
+
+.carta-fila__imagen {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+.carta-fila__visual .carta-medallas {
+  top: 4px;
+  right: 4px;
+}
+
+.carta-fila__visual .carta-medallas--compactas {
+  width: 40px;
+  height: 40px;
+}
+
+.carta-fila__texto {
+  display: grid;
+  min-width: 0;
+  flex: 1;
+  gap: 3px;
+}
+
+.carta-fila__texto b {
+  font-size: 16px;
+  line-height: 1.22;
+}
+
+.carta-fila__descripcion {
+  margin: 0;
+  color: #cfcfcf;
+  font-size: 14.5px;
+  line-height: 1.3;
+}
+
+.carta-fila .carta-pegatina {
+  margin-top: 3px;
+}
+
+.carta-fila > .carta-precio {
+  margin-left: auto;
+}
+
+.carta-fila--con-foto .carta-precio {
+  margin-top: 7px;
+}
+
+/* Desayunos, bebidas y vinoteca se consultan de un vistazo: filas bajas,
+   fotos pequeñas y, en escritorio, a dos columnas. */
+.carta-seccion--desayunos .carta-precio,
+.carta-seccion--bebidas .carta-precio,
+.carta-seccion--vinoteca .carta-precio {
+  min-height: 26px;
+  padding: 3px 7px;
+  font-size: 14px;
+}
+
+.carta-seccion--desayunos .carta-fila,
+.carta-seccion--bebidas .carta-fila,
+.carta-seccion--vinoteca .carta-fila {
+  min-height: 42px;
+  padding: 7px 0;
+}
+
+.carta-seccion--desayunos .carta-fila__texto b,
+.carta-seccion--bebidas .carta-fila__texto b,
+.carta-seccion--vinoteca .carta-fila__texto b {
+  font-size: 15px;
+}
+
+.carta-seccion--desayunos .carta-fila__descripcion,
+.carta-seccion--bebidas .carta-fila__descripcion,
+.carta-seccion--vinoteca .carta-fila__descripcion {
+  font-size: 13.5px;
+}
+
+.carta-seccion--desayunos .carta-fila__visual,
+.carta-seccion--bebidas .carta-fila__visual,
+.carta-seccion--vinoteca .carta-fila__visual {
+  width: 64px;
+  height: 64px;
+  flex-basis: 64px;
+}
+
+.carta-seccion--desayunos .carta-grupo h3,
+.carta-seccion--bebidas .carta-grupo h3,
+.carta-seccion--vinoteca .carta-grupo h3 {
+  font-size: 19px;
+}
+
+.carta-tarta-destacada {
+  display: grid;
+  justify-items: center;
+  gap: 22px;
+  margin: 0 0 34px;
+}
+
+.carta-tarta-destacada__aro {
+  position: relative;
+  display: grid;
+  width: 280px;
+  height: 280px;
+  place-items: center;
+  overflow: visible;
+  border: 0;
+  border-radius: 50%;
+  padding: 19px;
+  background: repeating-conic-gradient(
+    var(--rosa) 0deg 14deg,
+    #fff 15deg 18deg,
+    var(--amarillo) 19deg 23deg,
+    var(--rosa) 24deg 35deg
+  );
+  box-shadow:
+    0 0 0 5px #000,
+    0 0 0 9px var(--rosa);
+}
+
+.carta-tarta-destacada__imagen {
+  width: 100%;
+  height: 100%;
+  border: 6px solid #000;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.carta-tarta-destacada__aro .carta-medallas {
+  top: 7px;
+  right: -28px;
+}
+
+.carta-tarta-destacada__texto {
+  display: grid;
+  justify-items: center;
+  gap: 9px;
+  text-align: center;
+}
+
+.carta-tarta-destacada__texto h3,
+.carta-tarta-destacada__texto p {
+  margin: 0;
+}
+
+.carta-tarta-destacada__texto h3 {
+  font-family: var(--display);
+  font-size: 27px;
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+.carta-tarta-destacada__texto p {
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.carta-boton {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #000;
+  border-radius: 5px;
+  padding: 9px 16px;
+  background: var(--amarillo);
+  color: #000;
+  font-weight: 900;
+}
+
+.carta-boton--encargo {
+  width: fit-content;
+  background: var(--acento);
+}
+
+/* Menú del día con la identidad del local: tarjeta negra con borde grueso y
+   sombra amarilla desplazada, el precio como pegatina y cada bloque con un
+   color de la casa. Los platos siguen en blanco sobre negro para leerse bien. */
+.carta-menu {
+  margin: 0 6px 6px 0;
+  overflow: hidden;
+  border: 3px solid var(--acento);
+  border-radius: 12px;
+  background: #0b0b0b;
+  box-shadow: 6px 6px 0 var(--amarillo);
+  color: #fff;
+}
+
+/* En el móvil, la pegatina del precio arriba y el horario debajo, en una
+   sola línea. En escritorio van uno junto al otro. */
+.carta-menu__cabecera {
+  display: grid;
+  justify-items: start;
+  gap: 12px;
+  padding: 20px 18px 16px;
+  border-bottom: 3px solid var(--acento);
+  background: #151515;
+}
+
+/* El precio, como pegatina: amarilla, borde negro y un poco torcida. */
+.carta-menu__cabecera strong {
+  border: 3px solid #000;
+  border-radius: 6px;
+  padding: 8px 12px 6px;
+  background: var(--amarillo);
+  box-shadow: 4px 4px 0 var(--acento);
+  color: #000;
+  font-family: var(--display);
+  font-size: clamp(30px, 9vw, 46px);
+  font-weight: 400;
+  line-height: 1;
+  white-space: nowrap;
+  transform: rotate(-3deg);
+}
+
+.carta-menu__cabecera span {
+  margin: 0;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 850;
+}
+
+.carta-menu__incluye {
+  margin: 0;
+  padding: 14px 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  color: #e6e6e6;
+  font-size: 14.5px;
+  font-weight: 650;
+  line-height: 1.5;
+}
+
+.carta-menu__columnas {
+  display: grid;
+}
+
+.carta-menu__columnas section {
+  padding: 16px 18px 6px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.carta-menu__columnas section:last-child {
+  border-bottom: 0;
+}
+
+/* Cada bloque con un color del local: turquesa, rosa, amarillo y morado. */
+.carta-menu__columnas h3 {
+  margin: 0 0 4px;
+  color: var(--bloque, var(--acento));
+  font-family: var(--display);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+.carta-menu__columnas section:nth-child(1) {
+  --bloque: var(--turquesa);
+}
+
+.carta-menu__columnas section:nth-child(2) {
+  --bloque: var(--rosa);
+}
+
+.carta-menu__columnas section:nth-child(3) {
+  --bloque: var(--amarillo);
+}
+
+.carta-menu__columnas section:nth-child(4) {
+  --bloque: var(--morado);
+}
+
+/* Un plato por línea, sin viñetas y con aire de sobra. */
+.carta-menu__columnas ul {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  font-size: 15.5px;
+  font-weight: 650;
+  list-style: none;
+}
+
+.carta-menu__columnas li {
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  line-height: 1.38;
+}
+
+.carta-menu__columnas li:last-child {
+  border-bottom: 0;
+}
+
+/* Los suplementos llevan su precio como el resto de la carta. */
+.carta-menu__columnas li strong {
+  display: inline-block;
+  margin-left: 6px;
+  border: 2px solid #000;
+  border-radius: 4px;
+  padding: 2px 6px;
+  background: var(--amarillo);
+  color: #000;
+  font-weight: 950;
+  white-space: nowrap;
+}
+
+/* La carta cierra con el logo, sin datos: el cliente ya está en la mesa. */
+.carta-pie {
+  display: grid;
+  justify-items: center;
+  padding: 54px 20px max(60px, env(safe-area-inset-bottom));
+  border-top: 4px solid var(--rosa);
+  background: #000;
+}
+
+.carta-pie__logo {
+  width: min(260px, 62%);
+  height: auto;
+}
+
+.carta-modal[hidden] {
+  display: none;
+}
+
+.carta-modal {
+  position: fixed;
+  z-index: 50;
+  inset: 0;
+  display: grid;
+  align-items: end;
+  padding: 16px 0 0;
+}
+
+.carta-modal__fondo {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.76);
+  opacity: 0;
+  transition: opacity 0.22s ease;
+}
+
+.carta-modal__ficha {
+  position: relative;
+  z-index: 1;
+  max-height: min(88vh, 780px);
+  overflow: auto;
+  border-radius: 20px 20px 0 0;
+  background: #fff;
+  color: #000;
+  transform: translateY(105%);
+  transition: transform 0.22s var(--ease);
+  touch-action: pan-y;
+}
+
+.carta-modal.is-visible .carta-modal__fondo {
+  opacity: 1;
+}
+
+.carta-modal.is-visible .carta-modal__ficha {
+  transform: translateY(0);
+}
+
+.carta-modal__asa {
+  width: 48px;
+  height: 5px;
+  margin: 10px auto 8px;
+  border-radius: 99px;
+  background: #777;
+}
+
+.carta-modal__cerrar {
+  position: absolute;
+  z-index: 2;
+  top: 14px;
+  right: 16px;
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border: 2px solid #000;
+  border-radius: 50%;
+  background: var(--amarillo);
+  color: #000;
+  font-size: 31px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.carta-modal__fotos {
+  position: relative;
+  display: grid;
+  gap: 8px;
+}
+
+.carta-modal__fotos > .carta-medallas {
+  top: 68px;
+  right: 12px;
+}
+
+.carta-modal__fotos > .carta-medallas .carta-medalla {
+  width: 132px;
+}
+
+.carta-modal__fotos > .carta-medallas .carta-medalla svg {
+  width: 96px;
+  height: 112px;
+}
+
+.carta-modal__fotos > .carta-medallas--dobles {
+  width: 268px;
+  height: 138px;
+}
+
+.carta-modal__fotos > .carta-medallas--dobles .carta-medalla:nth-child(2) {
+  top: 22px;
+  right: 141px;
+  transform: rotate(-5deg) scale(0.9);
+}
+
+.carta-modal__imagen {
+  width: 100%;
+  max-height: 48vh;
+  object-fit: cover;
+}
+
+.carta-modal__poster {
+  display: grid;
+  min-height: 280px;
+  place-items: center;
+  padding: 30px;
+  background:
+    repeating-linear-gradient(
+      125deg,
+      transparent 0 22px,
+      rgba(0, 0, 0, 0.2) 23px 30px
+    ),
+    var(--poster);
+  color: #000;
+  font-family: var(--display);
+  font-size: clamp(34px, 10vw, 64px);
+  line-height: 1.05;
+  text-align: center;
+}
+
+.carta-modal__texto {
+  display: grid;
+  gap: 12px;
+  padding: 20px 20px max(30px, env(safe-area-inset-bottom));
+}
+
+.carta-modal__texto > p:first-child {
+  margin: 0;
+  color: var(--morado);
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.carta-modal__texto h2 {
+  margin: 0;
+  font-family: var(--display);
+  font-size: clamp(26px, 8vw, 42px);
+  font-weight: 400;
+  line-height: 1.08;
+}
+
+.carta-modal__texto > p:not(:first-child) {
+  margin: 0;
+  font-size: 17px;
+}
+
+.carta-modal__texto > .carta-precio {
+  font-size: 21px;
+}
+
+@keyframes carta-resplandor {
+  0%,
+  100% {
+    box-shadow:
+      0 0 8px #fff,
+      0 0 18px var(--rosa),
+      0 0 34px var(--rosa);
+  }
+  50% {
+    box-shadow:
+      0 0 4px #fff,
+      0 0 8px var(--rosa),
+      0 0 12px var(--rosa);
+  }
+}
+
+@keyframes carta-destello {
+  0%,
+  68%,
+  100% {
+    left: -35%;
+    opacity: 0;
+  }
+  72% {
+    opacity: 1;
+  }
+  85% {
+    left: 116%;
+    opacity: 0;
+  }
+}
+
+@media (min-width: 680px) {
+  .carta-burgers {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .carta-burger {
+    grid-template-rows: auto auto;
+  }
+
+  .carta-burger__visual {
+    width: 100%;
+  }
+
+  .carta-inicio__grid {
+    gap: 12px;
+  }
+
+  .carta-menu__columnas {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .carta-menu__columnas section:nth-child(odd) {
+    border-right: 1px solid rgba(255, 255, 255, 0.16);
+  }
+
+  .carta-menu__columnas section:nth-last-child(-n + 2) {
+    border-bottom: 0;
+  }
+}
+
+@media (min-width: 900px) {
+  .carta-nav {
+    position: sticky;
+    z-index: 20;
+    top: 18px;
+    width: auto;
+    height: fit-content;
+    border: 0;
+    background: #000;
+    backdrop-filter: none;
+  }
+
+  .carta-estructura {
+    display: grid;
+    grid-template-columns: 198px minmax(0, 1fr);
+    gap: 26px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 24px;
+    align-items: start;
+  }
+
+  .carta-nav__scroll {
+    display: grid;
+    gap: 6px;
+    overflow: visible;
+    padding: 16px 0;
+  }
+
+  .carta-nav a {
+    width: 100%;
+    min-width: 0;
+    justify-content: flex-start;
+    border-color: transparent;
+    border-radius: 5px;
+    padding-inline: 10px;
+    font-size: 13px;
+  }
+
+  .carta-contenido {
+    min-width: 0;
+    max-width: none;
+    padding-top: 0;
+  }
+
+  .carta-seccion {
+    padding: 76px 44px 40px;
+    scroll-margin-top: 20px;
+  }
+
+  .carta-seccion__cabecera {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .carta-seccion__intro {
+    text-align: right;
+  }
+
+  .carta-burgers {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .carta-inicio__grid {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .carta-inicio__tarjeta {
+    grid-column: span 3;
+  }
+
+  .carta-inicio__tarjeta[data-seccion="burgers"] {
+    grid-column: span 6;
+    grid-row: span 2;
+    aspect-ratio: auto;
+  }
+
+  .carta-inicio__tarjeta[data-seccion="desayunos"],
+  .carta-inicio__tarjeta[data-seccion="bebidas"],
+  .carta-inicio__tarjeta[data-seccion="vinoteca"] {
+    grid-column: span 2;
+    aspect-ratio: auto;
+  }
+
+  .carta-inicio__texto {
+    padding: 44px 14px 13px;
+  }
+
+  .carta-inicio__texto b {
+    font-size: 25px;
+  }
+
+  .carta-burger {
+    grid-template-rows: auto auto;
+  }
+
+  .carta-lista-principal {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 46px;
+    align-items: start;
+  }
+
+  .carta-lista-principal > .carta-fila {
+    align-self: start;
+  }
+
+  .carta-fila__visual {
+    width: 116px;
+    height: 116px;
+    flex-basis: 116px;
+  }
+
+  .carta-medalla {
+    width: 132px;
+  }
+
+  .carta-medalla svg {
+    width: 84px;
+    height: 98px;
+  }
+
+  .carta-medallas--dobles {
+    width: 268px;
+    height: 138px;
+  }
+
+  .carta-medallas--dobles .carta-medalla:nth-child(2) {
+    top: 22px;
+    right: 141px;
+    transform: rotate(-5deg) scale(0.9);
+  }
+
+  .carta-lista-principal > .carta-grupo {
+    grid-column: 1 / -1;
+  }
+
+  .carta-menu__columnas {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .carta-menu__columnas section {
+    border-right: 1px solid rgba(255, 255, 255, 0.16);
+    border-bottom: 0;
+  }
+
+  .carta-menu__columnas section:last-child {
+    border-right: 0;
+  }
+
+  .carta-modal {
+    place-items: center;
+    padding: 36px;
+  }
+
+  .carta-modal__ficha {
+    width: min(820px, 92vw);
+    max-height: 86vh;
+    border-radius: 14px;
+    transform: scale(0.94);
+  }
+
+  .carta-modal.is-visible .carta-modal__ficha {
+    transform: scale(1);
+  }
+
+  .carta-modal__asa {
+    display: none;
+  }
+
+  .carta-modal__fotos {
+    grid-template-columns: 1fr;
+  }
+
+  .carta-modal__imagen {
+    max-height: 400px;
+  }
+
+  .carta-tarta-destacada {
+    grid-template-columns: 380px minmax(0, 1fr);
+    justify-content: center;
+    gap: 46px;
+  }
+
+  .carta-tarta-destacada__aro {
+    width: 380px;
+    height: 380px;
+  }
+
+  .carta-tarta-destacada__texto {
+    align-self: center;
+    justify-items: start;
+    text-align: left;
+  }
+
+  .carta-tarta-destacada__texto h3 {
+    font-size: 38px;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .carta-seccion {
+    opacity: 0.8;
+    transform: translateY(10px);
+    transition:
+      opacity 0.45s ease,
+      transform 0.45s ease;
+  }
+
+  .carta-seccion.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .carta-inicio__tarjeta {
+    animation: carta-inicio-entra 0.46s var(--ease) both;
+  }
+
+  .carta-inicio__tarjeta:nth-child(2) {
+    animation-delay: 0.04s;
+  }
+
+  .carta-inicio__tarjeta:nth-child(3) {
+    animation-delay: 0.08s;
+  }
+
+  .carta-inicio__tarjeta:nth-child(4) {
+    animation-delay: 0.12s;
+  }
+
+  .carta-inicio__tarjeta:nth-child(5) {
+    animation-delay: 0.16s;
+  }
+
+  .carta-inicio__tarjeta:nth-child(6) {
+    animation-delay: 0.2s;
+  }
+
+  .carta-tarta-destacada__aro {
+    animation: carta-tarta-flota 5s ease-in-out infinite;
+  }
+}
+
+@keyframes carta-inicio-entra {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes carta-tarta-flota {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(2deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (min-width: 900px) {
+  .carta-seccion--vinoteca .carta-lista,
+  .carta-seccion--desayunos .carta-lista {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 46px;
+  }
+}
+
+@media (min-width: 680px) {
+  .carta-menu__cabecera {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+  }
+
+  .carta-menu__cabecera strong {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .carta-menu__cabecera span {
+    grid-column: 1;
+    grid-row: 1;
+  }
+}

@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta
+      name="description"
+      content="La carta de El Comienzo by José Luis Garcinuño."
+    />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-title" content="El Comienzo" />
+    <link rel="manifest" href="manifest.json" />
+    <title>La carta — El Comienzo</title>
+    <link rel="icon" type="image/svg+xml" href="assets/img/carta/favicon.svg" />
+    <link rel="apple-touch-icon" href="assets/img/carta/icono-180.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Rammetto+One&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/pages/carta-qr.css" />
+  </head>
+  <body>
+    <div class="carta-estructura">
+      <nav class="carta-nav" aria-label="Apartados de la carta">
+        <div class="carta-nav__scroll" id="carta-nav"></div>
+      </nav>
+      <main class="carta-contenido" id="carta-contenido"></main>
+    </div>
+    <footer class="carta-pie">
+      <img
+        class="carta-pie__logo"
+        src="assets/img/carta/logo-blanco.png"
+        width="708"
+        height="220"
+        loading="lazy"
+        alt="El Comienzo by José Luis Garcinuño"
+      />
+    </footer>
+    <div class="carta-modal" id="carta-modal" hidden aria-hidden="true">
+      <div class="carta-modal__fondo" data-cerrar-modal></div>
+      <section
+        class="carta-modal__ficha"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="ficha-nombre"
+        tabindex="-1"
+      >
+        <div class="carta-modal__asa" aria-hidden="true"></div>
+        <button
+          class="carta-modal__cerrar"
+          type="button"
+          aria-label="Cerrar ficha"
+          data-cerrar-modal
+        >
+          ×
+        </button>
+        <div id="ficha-contenido"></div>
+      </section>
+    </div>
+    <script src="data/carta-qr.js"></script>
+    <script src="js/drips.js"></script>
+    <script src="js/pages/carta-qr.js"></script>
+  </body>
+</html>

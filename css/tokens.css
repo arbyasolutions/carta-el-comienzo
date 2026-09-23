@@ -1,0 +1,21 @@
+:root {
+  --negro: #000;
+  --pared: #fff;
+  --rosa: #e459c7;
+  --amarillo: #ffba00;
+  --turquesa: #22c7c0;
+  --brasa: #ff5b14;
+  --morado: #a93bff;
+  --display: "Rammetto One", sans-serif;
+  --body: "Archivo", Arial, sans-serif;
+  --header-height: 102px;
+  --gutter: clamp(32px, 5.2vw, 100px);
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@media (max-width: 900px) {
+  :root {
+    --header-height: 64px;
+    --gutter: 20px;
+  }
+}
